@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ public class CrudResController {
 	
 	
 	@GetMapping("/getusuariolist")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public List<Usuario> fetchUsuarioList(){
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		//logica para la lista de la base de datos
@@ -32,21 +34,25 @@ public class CrudResController {
 		}
 	
 	@PostMapping("/addusuario")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public Usuario saveUsuario(@RequestBody Usuario user){
 		return service.saveUsuarioToDB(user);
 		}
 	
 	@GetMapping("/getusuariobyid/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public Usuario fetchUsuarioById(@PathVariable int id){
 		return service.fetchUsuarioById(id).get();
 		}	
 	
 	@DeleteMapping("/deleteusuariobyid/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public String deleteUsuariobyid(@PathVariable int id){
 		return service.deleteUsuarioById(id);
 		}
 	
 	@PostMapping("/updateusuario")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public String updateUsuario(@RequestBody Usuario user){
 		return service.updateUsuario(user);
 		}
