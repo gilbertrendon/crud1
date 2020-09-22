@@ -23,15 +23,12 @@ public class CrudService {
 	}
 	
 	public Usuario saveUsuarioToDB(Usuario user) {
-		//Este código es para controlar que el nombre sea único
-		Optional<Usuario> consultado = repo.findById(user.getId_Usuario());
-		if(consultado.get().getNombre() != user.getNombre()) {
-			return repo.save(user);	
-		}else {
-			return null;
-		}
-		//De lo contrario no se hace nada debido a que ese nombre ya está en la BD
-		
+		System.out.println("ESTO ES LO QUE DEVUELVE "
+				+ "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+				+ "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+				+ "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+				+ "E"+repo.findById(user.getId_Usuario()).toString());
+			return repo.save(user);			
 	}
 	
 	public Optional<Usuario> fetchUsuarioById(int id) {
