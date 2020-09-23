@@ -29,19 +29,51 @@ public class CrudResController {
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		//logica para la lista de la base de datos
 		//service.fetchUsuarioList();
+	
+		
 		usuarios = service.fetchUsuarioList();
+	
 		return usuarios;
 		}
 	
 	@PostMapping("/addusuario")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public Usuario saveUsuario(@RequestBody Usuario user){
-		return service.saveUsuarioToDB(user);
+		//System.out.println("Esto es lo que devuelve save:");
+		//System.out.println(user.getNombre());
+		String nombre="";
+		boolean yaExiste = false;
+		try {
+			List<Usuario> usuarios = new ArrayList<Usuario>();
+			//logica para la lista de la base de datos
+			//service.fetchUsuarioList();
+			usuarios = service.fetchUsuarioList();
+			for(int i=0;i<usuarios.toArray().length;i++) {
+				nombre = usuarios.get(i).getNombre();
+				System.out.println(nombre+user.getNombre());
+					if(nombre.equals(user.getNombre())) {
+						System.out.println("ya existe");
+						yaExiste = true;
+						return user;
+					}	
+			}
+		
+		}catch(Exception e) {
+			
+			return user;
 		}
-	
+		if(!yaExiste) {
+			return service.saveUsuarioToDB(user);
+		}else {
+			return user;
+		}
+		}
+		
 	@GetMapping("/getusuariobyid/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public Usuario fetchUsuarioById(@PathVariable int id){
+		//System.out.println("Esto es lo que devuelve get por id");
+		//System.out.println(service.fetchUsuarioById(id).get().getNombre());
 		return service.fetchUsuarioById(id).get();
 		}	
 	

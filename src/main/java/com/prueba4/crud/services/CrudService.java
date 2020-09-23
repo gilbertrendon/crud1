@@ -23,11 +23,7 @@ public class CrudService {
 	}
 	
 	public Usuario saveUsuarioToDB(Usuario user) {
-		System.out.println("ESTO ES LO QUE DEVUELVE "
-				+ "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
-				+ "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
-				+ "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
-				+ "E"+repo.findById(user.getId_Usuario()).toString());
+	
 			return repo.save(user);			
 	}
 	
